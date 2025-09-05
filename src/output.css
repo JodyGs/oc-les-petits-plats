@@ -8,15 +8,24 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --spacing: 0.25rem;
+    --container-4xl: 56rem;
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
+    --text-lg: 1.125rem;
+    --text-lg--line-height: calc(1.75 / 1.125);
     --text-3xl: 1.875rem;
     --text-3xl--line-height: calc(2.25 / 1.875);
     --font-weight-bold: 700;
+    --radius-lg: 0.5rem;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
+    --font-anton: "Anton", sans-serif;
     --color-black: #000;
     --color-yellow: #FFD15B;
+    --color-white: #fff;
   }
 }
 @layer base {
@@ -168,68 +177,198 @@
   }
 }
 @layer utilities {
-  .table {
-    display: table;
+  .absolute {
+    position: absolute;
   }
-  .border-collapse {
-    border-collapse: collapse;
+  .relative {
+    position: relative;
   }
-  .resize {
-    resize: both;
+  .top-1\/2 {
+    top: calc(1/2 * 100%);
   }
-  .border {
-    border-style: var(--tw-border-style);
-    border-width: 1px;
+  .right-2 {
+    right: calc(var(--spacing) * 2);
+  }
+  .mx-auto {
+    margin-inline: auto;
+  }
+  .mt-48 {
+    margin-top: calc(var(--spacing) * 48);
+  }
+  .flex {
+    display: flex;
+  }
+  .min-h-96 {
+    min-height: calc(var(--spacing) * 96);
+  }
+  .w-full {
+    width: 100%;
+  }
+  .max-w-4xl {
+    max-width: var(--container-4xl);
+  }
+  .max-w-\[720px\] {
+    max-width: 720px;
+  }
+  .max-w-\[1440px\] {
+    max-width: 1440px;
+  }
+  .-translate-y-1\/2 {
+    --tw-translate-y: calc(calc(1/2 * 100%) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .transform {
+    transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
+  }
+  .flex-col {
+    flex-direction: column;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .space-y-8 {
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 8) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 8) * calc(1 - var(--tw-space-y-reverse)));
+    }
+  }
+  .self-start {
+    align-self: flex-start;
+  }
+  .rounded-lg {
+    border-radius: var(--radius-lg);
   }
   .bg-black {
     background-color: var(--color-black);
   }
-  .text-3xl {
-    font-size: var(--text-3xl);
-    line-height: var(--tw-leading, var(--text-3xl--line-height));
+  .bg-white {
+    background-color: var(--color-white);
   }
-  .text-sm {
-    font-size: var(--text-sm);
-    line-height: var(--tw-leading, var(--text-sm--line-height));
+  .bg-cover {
+    background-size: cover;
   }
-  .font-bold {
-    --tw-font-weight: var(--font-weight-bold);
-    font-weight: var(--font-weight-bold);
+  .bg-center {
+    background-position: center;
+  }
+  .bg-no-repeat {
+    background-repeat: no-repeat;
+  }
+  .p-3 {
+    padding: calc(var(--spacing) * 3);
+  }
+  .px-6 {
+    padding-inline: calc(var(--spacing) * 6);
+  }
+  .px-16 {
+    padding-inline: calc(var(--spacing) * 16);
+  }
+  .py-4 {
+    padding-block: calc(var(--spacing) * 4);
+  }
+  .pt-12 {
+    padding-top: calc(var(--spacing) * 12);
+  }
+  .pb-44 {
+    padding-bottom: calc(var(--spacing) * 44);
+  }
+  .text-center {
+    text-align: center;
+  }
+  .font-anton {
+    font-family: var(--font-anton);
+  }
+  .text-lg {
+    font-size: var(--text-lg);
+    line-height: var(--tw-leading, var(--text-lg--line-height));
+  }
+  .text-\[44px\] {
+    font-size: 44px;
+  }
+  .text-white {
+    color: var(--color-white);
   }
   .text-yellow {
     color: var(--color-yellow);
   }
-  .italic {
-    font-style: italic;
+  .uppercase {
+    text-transform: uppercase;
   }
-  .underline {
-    text-decoration-line: underline;
+  .transition-colors {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
+  .group-hover\:stroke-black {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        stroke: var(--color-black);
+      }
+    }
+  }
+  .hover\:bg-yellow {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-yellow);
+      }
+    }
   }
 }
-@property --tw-border-style {
+@property --tw-translate-x {
   syntax: "*";
   inherits: false;
-  initial-value: solid;
+  initial-value: 0;
 }
-@property --tw-font-weight {
+@property --tw-translate-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-rotate-x {
   syntax: "*";
   inherits: false;
 }
-@property --tw-outline-style {
+@property --tw-rotate-y {
   syntax: "*";
   inherits: false;
-  initial-value: solid;
+}
+@property --tw-rotate-z {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-y {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-space-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
 }
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
-      --tw-border-style: solid;
-      --tw-font-weight: initial;
-      --tw-outline-style: solid;
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-translate-z: 0;
+      --tw-rotate-x: initial;
+      --tw-rotate-y: initial;
+      --tw-rotate-z: initial;
+      --tw-skew-x: initial;
+      --tw-skew-y: initial;
+      --tw-space-y-reverse: 0;
     }
   }
 }
