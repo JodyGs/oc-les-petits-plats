@@ -40,7 +40,7 @@
             <div class="flex gap-4 mb-8">
                 <!-- Dropdown Ingrédients -->
                 <div class="relative">
-                    <button class="flex items-center justify-between w-48 px-4 py-3 text-black bg-white rounded-lg hover:bg-gray-50">
+                    <button data-dropdown-button="ingredients" class="flex items-center justify-between w-48 px-4 py-3 text-black bg-white rounded-lg hover:bg-gray-50">
                         <span>Ingrédients</span>
                         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -50,7 +50,7 @@
 
                 <!-- Dropdown Appareils -->
                 <div class="relative">
-                    <button class="flex items-center justify-between w-48 px-4 py-3 text-black bg-white rounded-lg hover:bg-gray-50">
+                    <button data-dropdown-button="appliances" class="flex items-center justify-between w-48 px-4 py-3 text-black bg-white rounded-lg hover:bg-gray-50">
                         <span>Appareils</span>
                         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -60,7 +60,7 @@
 
                 <!-- Dropdown Ustensiles -->
                 <div class="relative">
-                    <button class="flex items-center justify-between w-48 px-4 py-3 text-black bg-white rounded-lg hover:bg-gray-50">
+                    <button data-dropdown-button="ustensils" class="flex items-center justify-between w-48 px-4 py-3 text-black bg-white rounded-lg hover:bg-gray-50">
                         <span>Ustensiles</span>
                         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -69,195 +69,17 @@
                 </div>
 
                 <!-- Compteur de recettes -->
-                <div class="ml-auto text-xl font-bold text-gray-800">
+                <div id="recipe-counter" class="ml-auto text-xl font-bold text-gray-800">
                     1500 recettes
                 </div>
             </div>
 
             <!-- Grille des recettes -->
-            <div class="grid grid-cols-3 gap-6">
-                <!-- Première rangée -->
-                <!-- Carte recette 1 - Limonade de coco -->
-                <article class="overflow-hidden bg-white rounded-lg shadow-md">
-                    <div class="relative">
-                        <img src="./assets/recipes/new/Recette01.jpg" alt="Limonade de coco" class="object-cover w-full h-64">
-                        <div class="absolute top-4 right-4 bg-yellow text-black px-3 py-1 rounded-full text-sm font-bold">
-                            10min
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h2 class="mb-4 text-xl font-bold text-gray-900">Limonade de coco</h2>
-                        <div class="mb-4">
-                            <h3 class="mb-2 text-xs font-bold tracking-wider text-gray-500 uppercase">Recette</h3>
-                            <p class="text-sm text-gray-700 leading-relaxed">
-                                Mettre les glaçons à votre goût dans le blender, ajouter le lait de coco, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistance désirée.
-                            </p>
-                        </div>
-                        <div>
-                            <h3 class="mb-3 text-xs font-bold tracking-wider text-gray-500 uppercase">Ingrédients</h3>
-                            <div class="grid grid-cols-2 gap-2 text-sm">
-                                <div><span class="font-medium">Lait de coco</span><br><span class="text-gray-600">400ml</span></div>
-                                <div><span class="font-medium">Jus de citron</span><br><span class="text-gray-600">2</span></div>
-                                <div><span class="font-medium">Crème de coco</span><br><span class="text-gray-600">2 cuillères</span></div>
-                                <div><span class="font-medium">Sucre</span><br><span class="text-gray-600">30g</span></div>
-                                <div><span class="font-medium">Glaçons</span><br><span class="text-gray-600">2 cuillères</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Carte recette 2 - Poisson cru à la tahitienne -->
-                <article class="overflow-hidden bg-white rounded-lg shadow-md">
-                    <div class="relative">
-                        <img src="./assets/recipes/new/Recette02.jpg" alt="Poisson cru à la tahitienne" class="object-cover w-full h-64">
-                        <div class="absolute top-4 right-4 bg-yellow text-black px-3 py-1 rounded-full text-sm font-bold">
-                            60min
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h2 class="mb-4 text-xl font-bold text-gray-900">Poisson cru à la tahitienne</h2>
-                        <div class="mb-4">
-                            <h3 class="mb-2 text-xs font-bold tracking-wider text-gray-500 uppercase">Recette</h3>
-                            <p class="text-sm text-gray-700 leading-relaxed">
-                                Découper le thon en dés, le mettre dans un plat et le recouvrir de jus de citron vert (mieux vaut prendre un plat large et peu profond). Laisser reposer au réfrigérateur au moins 2 heures.
-                            </p>
-                        </div>
-                        <div>
-                            <h3 class="mb-3 text-xs font-bold tracking-wider text-gray-500 uppercase">Ingrédients</h3>
-                            <div class="grid grid-cols-2 gap-2 text-sm">
-                                <div><span class="font-medium">Thon Rouge (ou blanc)</span><br><span class="text-gray-600">200g</span></div>
-                                <div><span class="font-medium">Concombre</span><br><span class="text-gray-600">1</span></div>
-                                <div><span class="font-medium">Tomate</span><br><span class="text-gray-600">2</span></div>
-                                <div><span class="font-medium">Carotte</span><br><span class="text-gray-600">1</span></div>
-                                <div><span class="font-medium">Citron vert</span><br><span class="text-gray-600">5</span></div>
-                                <div><span class="font-medium">Lait de coco</span><br><span class="text-gray-600">100ml</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Carte recette 3 - Poulet coco réunionnais -->
-                <article class="overflow-hidden bg-white rounded-lg shadow-md">
-                    <div class="relative">
-                        <img src="./assets/recipes/new/Recette03.jpg" alt="Poulet coco réunionnais" class="object-cover w-full h-64">
-                        <div class="absolute top-4 right-4 bg-yellow text-black px-3 py-1 rounded-full text-sm font-bold">
-                            85min
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h2 class="mb-4 text-xl font-bold text-gray-900">Poulet coco réunionnais</h2>
-                        <div class="mb-4">
-                            <h3 class="mb-2 text-xs font-bold tracking-wider text-gray-500 uppercase">Recette</h3>
-                            <p class="text-sm text-gray-700 leading-relaxed">
-                                Découper le poulet en morceaux, les faire dorer dans l'huile dans une grande cocotte. Ajouter l'ail haché et les oignons émincés, faire revenir. Ajouter le lait de coco, laisser cuire environ 45 min.
-                            </p>
-                        </div>
-                        <div>
-                            <h3 class="mb-3 text-xs font-bold tracking-wider text-gray-500 uppercase">Ingrédients</h3>
-                            <div class="grid grid-cols-2 gap-2 text-sm">
-                                <div><span class="font-medium">Poulet</span><br><span class="text-gray-600">1</span></div>
-                                <div><span class="font-medium">Lait de coco</span><br><span class="text-gray-600">400ml</span></div>
-                                <div><span class="font-medium">Oignon</span><br><span class="text-gray-600">1 gros</span></div>
-                                <div><span class="font-medium">Ail</span><br><span class="text-gray-600">3 gousses</span></div>
-                                <div><span class="font-medium">Huile d'olive</span><br><span class="text-gray-600">1 cuillère à soupe</span></div>
-                                <div><span class="font-medium">Poivre rouge</span><br><span class="text-gray-600">1 pincée</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Deuxième rangée -->
-                <!-- Carte recette 4 - Salade de riz -->
-                <article class="overflow-hidden bg-white rounded-lg shadow-md">
-                    <div class="relative">
-                        <img src="./assets/recipes/new/Recette04.jpg" alt="Salade de riz" class="object-cover w-full h-64">
-                        <div class="absolute top-4 right-4 bg-yellow text-black px-3 py-1 rounded-full text-sm font-bold">
-                            25min
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h2 class="mb-4 text-xl font-bold text-gray-900">Salade de riz</h2>
-                        <div class="mb-4">
-                            <h3 class="mb-2 text-xs font-bold tracking-wider text-gray-500 uppercase">Recette</h3>
-                            <p class="text-sm text-gray-700 leading-relaxed">
-                                Faire cuire le riz dans un grand volume d'eau salée pendant 18 minutes. Égoutter et refroidir sous l'eau froide. Couper le jambon en dés, les œufs durs en rondelles et les tomates en quartiers.
-                            </p>
-                        </div>
-                        <div>
-                            <h3 class="mb-3 text-xs font-bold tracking-wider text-gray-500 uppercase">Ingrédients</h3>
-                            <div class="grid grid-cols-2 gap-2 text-sm">
-                                <div><span class="font-medium">Riz blanc</span><br><span class="text-gray-600">300g</span></div>
-                                <div><span class="font-medium">Jambon</span><br><span class="text-gray-600">150g</span></div>
-                                <div><span class="font-medium">Œuf</span><br><span class="text-gray-600">3</span></div>
-                                <div><span class="font-medium">Tomates</span><br><span class="text-gray-600">2</span></div>
-                                <div><span class="font-medium">Mayonnaise</span><br><span class="text-gray-600">3 cuillères</span></div>
-                                <div><span class="font-medium">Persil</span><br><span class="text-gray-600">1 bouquet</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Carte recette 5 - Tarte au thon -->
-                <article class="overflow-hidden bg-white rounded-lg shadow-md">
-                    <div class="relative">
-                        <img src="./assets/recipes/new/Recette05.jpg" alt="Tarte au thon" class="object-cover w-full h-64">
-                        <div class="absolute top-4 right-4 bg-yellow text-black px-3 py-1 rounded-full text-sm font-bold">
-                            35min
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h2 class="mb-4 text-xl font-bold text-gray-900">Tarte au thon</h2>
-                        <div class="mb-4">
-                            <h3 class="mb-2 text-xs font-bold tracking-wider text-gray-500 uppercase">Recette</h3>
-                            <p class="text-sm text-gray-700 leading-relaxed">
-                                Préchauffer le four à 200°C. Étaler la pâte dans un moule à tarte. Battre les œufs avec la crème fraîche. Émietter le thon. Disposer sur la pâte le thon, les tomates coupées en rondelles.
-                            </p>
-                        </div>
-                        <div>
-                            <h3 class="mb-3 text-xs font-bold tracking-wider text-gray-500 uppercase">Ingrédients</h3>
-                            <div class="grid grid-cols-2 gap-2 text-sm">
-                                <div><span class="font-medium">Pâte brisée</span><br><span class="text-gray-600">1</span></div>
-                                <div><span class="font-medium">Thon en miettes</span><br><span class="text-gray-600">160g</span></div>
-                                <div><span class="font-medium">Œuf</span><br><span class="text-gray-600">3</span></div>
-                                <div><span class="font-medium">Crème fraîche</span><br><span class="text-gray-600">200ml</span></div>
-                                <div><span class="font-medium">Tomates</span><br><span class="text-gray-600">2</span></div>
-                                <div><span class="font-medium">Gruyère</span><br><span class="text-gray-600">100g</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Carte recette 6 - Tarte aux pommes -->
-                <article class="overflow-hidden bg-white rounded-lg shadow-md">
-                    <div class="relative">
-                        <img src="./assets/recipes/new/Recette06.jpg" alt="Tarte aux pommes" class="object-cover w-full h-64">
-                        <div class="absolute top-4 right-4 bg-yellow text-black px-3 py-1 rounded-full text-sm font-bold">
-                            130min
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h2 class="mb-4 text-xl font-bold text-gray-900">Tarte aux pommes</h2>
-                        <div class="mb-4">
-                            <h3 class="mb-2 text-xs font-bold tracking-wider text-gray-500 uppercase">Recette</h3>
-                            <p class="text-sm text-gray-700 leading-relaxed">
-                                Préchauffer le four à 200°C. Étaler la pâte dans un moule à tarte. Disposer les lamelles de pommes. Saupoudrer de sucre et enfourner pour 45 minutes. Démouler tiède sur une grille.
-                            </p>
-                        </div>
-                        <div>
-                            <h3 class="mb-3 text-xs font-bold tracking-wider text-gray-500 uppercase">Ingrédients</h3>
-                            <div class="grid grid-cols-2 gap-2 text-sm">
-                                <div><span class="font-medium">Pâte brisée</span><br><span class="text-gray-600">1</span></div>
-                                <div><span class="font-medium">Pommes</span><br><span class="text-gray-600">3</span></div>
-                                <div><span class="font-medium">Sucre</span><br><span class="text-gray-600">50g</span></div>
-                                <div><span class="font-medium">Beurre</span><br><span class="text-gray-600">1 noix</span></div>
-                                <div><span class="font-medium">Œuf</span><br><span class="text-gray-600">1</span></div>
-                                <div><span class="font-medium">Poudre d'amande</span><br><span class="text-gray-600">25g</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+            <div id="recipes-container" class="grid grid-cols-3 gap-6">
+                <!-- Les recettes seront ajoutées dynamiquement ici -->
             </div>
         </main>
     </div>
+    <script type="module" src="./src/app.js"></script>
 </body>
 </html>
