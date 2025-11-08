@@ -21,7 +21,19 @@ export function searchRecipes(query) {
             item.ingredient.toLowerCase().includes(searchTerm)
         );
 
-        return hasIngredient;
+        if (hasIngredient) {
+            return true;
+        }
+
+        if (recipe.appliance && recipe.appliance.toLowerCase().includes(searchTerm)) {
+            return true;
+        }
+
+        const hasUstensil = recipe.ustensils.some(ustensil =>
+            ustensil.toLowerCase().includes(searchTerm)
+        );
+
+        return hasUstensil;
     });
 }
 
