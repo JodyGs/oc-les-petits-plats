@@ -1,0 +1,74 @@
+
+export function createRecipeCard(recipe) {
+    const article = document.createElement('article');
+    article.className = 'overflow-hidden bg-white rounded-lg shadow-md';
+
+    const ingredientsHTML = recipe.ingredients.map(item => {
+        const quantity = item.quantity || '';
+        const unit = item.unit || '';
+        const quantityDisplay = quantity ? `<span class="text-gray-600">${quantity}${unit}</span>` : '';
+
+        return `
+            <div>
+                <span class="font-medium">${item.ingredient}</span>
+                ${quantityDisplay ? '<br>' + quantityDisplay : ''}
+            </div>
+        `;
+    }).join('');
+
+    const description = recipe.description.length > 180
+        ? recipe.description.substring(0, 180) + '...'
+        : recipe.description;
+
+    article.innerHTML = `
+        <div class="relative">
+            <img src="./assets/recipes/new/${recipe.image}" alt="${recipe.name}" class="object-cover w-full h-64">
+            <div class="absolute top-4 right-4 bg-yellow text-black px-3 py-1 rounded-full text-sm font-bold">
+                ${recipe.time}min
+            </div>
+        </div>
+        <div class="p-6">
+            <h2 class="mb-4 text-xl font-bold text-gray-900">${recipe.name}</h2>
+            <div class="mb-4">
+                <h3 class="mb-2 text-xs font-bold tracking-wider text-gray-500 uppercase">Recette</h3>
+                <p class="text-sm text-gray-700 leading-relaxed">
+                    ${description}
+                </p>
+            </div>
+            <div>
+                <h3 class="mb-3 text-xs font-bold tracking-wider text-gray-500 uppercase">Ingrédients</h3>
+                <div class="grid grid-cols-2 gap-2 text-sm">
+                    ${ingredientsHTML}
+                </div>
+            </div>
+        </div>
+    `;
+
+    return article;
+}
+
+export function displayRecipes(recipes) {
+    const recipesContainer = document.querySelector('#recipes-container');
+
+    if (!recipesContainer) {
+        console.error('Le conteneur des recettes n\'a pas été trouvé');
+        return;
+    }
+
+    recipesContainer.innerHTML = '';
+
+    recipes.forEach(recipe => {
+        const card = createRecipeCard(recipe);
+        recipesContainer.appendChild(card);
+    });
+
+    updateRecipeCounter(recipes.length);
+}
+
+
+export function updateRecipeCounter(count) {
+    const recipeCounter = document.querySelector('#recipe-counter');
+    if (recipeCounter) {
+        recipeCounter.textContent = `${count} recette${count > 1 ? 's' : ''}`;
+    }
+}

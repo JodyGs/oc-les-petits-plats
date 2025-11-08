@@ -20,8 +20,9 @@
 
             <!-- Barre de recherche -->
             <div class="relative w-full max-w-4xl">
-                <input 
-                    type="text" 
+                <input
+                    id="main-search-input"
+                    type="text"
                     placeholder="Rechercher une recette, un ingrédient..."
                     class="w-full px-6 py-4 text-lg text-gray-700 bg-white rounded-lg"
                 >
@@ -38,36 +39,8 @@
         <main class="px-16 py-8 bg-grey">
             <!-- Dropdowns de filtres -->
             <div class="flex gap-4 mb-8">
-                <!-- Dropdown Ingrédients -->
-                <div class="relative">
-                    <button data-dropdown-button="ingredients" class="flex items-center justify-between w-48 px-4 py-3 text-black bg-white rounded-lg hover:bg-gray-50">
-                        <span>Ingrédients</span>
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- Dropdown Appareils -->
-                <div class="relative">
-                    <button data-dropdown-button="appliances" class="flex items-center justify-between w-48 px-4 py-3 text-black bg-white rounded-lg hover:bg-gray-50">
-                        <span>Appareils</span>
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- Dropdown Ustensiles -->
-                <div class="relative">
-                    <button data-dropdown-button="ustensils" class="flex items-center justify-between w-48 px-4 py-3 text-black bg-white rounded-lg hover:bg-gray-50">
-                        <span>Ustensiles</span>
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                </div>
-
+                <!-- Les dropdowns seront créés dynamiquement par JavaScript -->
+                
                 <!-- Compteur de recettes -->
                 <div id="recipe-counter" class="ml-auto text-xl font-bold text-gray-800">
                     1500 recettes
