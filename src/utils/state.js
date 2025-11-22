@@ -49,3 +49,11 @@ export function removeFilter(type, value) {
 export function getSelectedFilters() {
     return state.selectedFilters;
 }
+
+export function clearAllFilters() {
+    state.selectedFilters = {
+        ingredients: [],
+        appliances: [],
+        ustensils: []
+    };
+}

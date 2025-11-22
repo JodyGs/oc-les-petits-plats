@@ -1,19 +1,29 @@
 import { getAllRecipes, getFilteredRecipes, setFilteredRecipes, setSearchQuery } from './utils/state.js';
-import { searchRecipes } from './utils/search.js';
+import { getFilteredRecipes as getFilteredRecipesWithPriority } from './utils/search.js';
 import { displayRecipes } from './components/recipeCard.js';
-import { initializeDropdowns, updateAllDropdowns } from './components/dropdown.js';
+import { initializeDropdowns, updateAllDropdowns, clearDropdownFilters } from './components/dropdown.js';
 
 function updateDisplay() {
     const recipes = getFilteredRecipes();
 
     displayRecipes(recipes);
     updateAllDropdowns(recipes);
+    updateRecipeCounter(recipes.length);
 }
 
+function updateRecipeCounter(count) {
+    const counter = document.querySelector('#recipe-counter');
+    if (counter) {
+        counter.textContent = `${count} recette${count !== 1 ? 's' : ''}`;
+    }
+}
 
 function handleMainSearch(query) {
+    if (query && query.trim().length >= 3) {
+        clearDropdownFilters();
+    }
     setSearchQuery(query);
-    const filteredRecipes = searchRecipes(query);
+    const filteredRecipes = getFilteredRecipesWithPriority(query);
     setFilteredRecipes(filteredRecipes);
     updateDisplay();
 }

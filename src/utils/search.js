@@ -1,5 +1,5 @@
 
-import { getAllRecipes } from './state.js';
+import { getAllRecipes, getSelectedFilters } from './state.js';
 
 export function searchRecipes(query) {
     const searchTerm = query.toLowerCase().trim();
@@ -8,6 +8,8 @@ export function searchRecipes(query) {
         return getAllRecipes();
     }
 
+//TODO: Utiliser un foreach sur autre branche 
+// jsbench. tester avec nombres important de recettes
     return getAllRecipes().filter(recipe => {
         if (recipe.name.toLowerCase().includes(searchTerm)) {
             return true;
@@ -35,6 +37,45 @@ export function searchRecipes(query) {
 
         return hasUstensil;
     });
+}
+
+export function filterRecipesByTags(recipes, filters) {
+    return recipes.filter(recipe => {
+        const matchesIngredients = filters.ingredients.length === 0 || 
+            filters.ingredients.every(selectedIngredient => 
+                recipe.ingredients.some(item => 
+                    item.ingredient.toLowerCase() === selectedIngredient.toLowerCase()
+                )
+            );
+
+        const matchesAppliances = filters.appliances.length === 0 || 
+            filters.appliances.some(selectedAppliance => 
+                recipe.appliance && recipe.appliance.toLowerCase() === selectedAppliance.toLowerCase()
+            );
+
+        const matchesUstensils = filters.ustensils.length === 0 || 
+            filters.ustensils.every(selectedUstensil => 
+                recipe.ustensils.some(ustensil => 
+                    ustensil.toLowerCase() === selectedUstensil.toLowerCase()
+                )
+            );
+
+        return matchesIngredients && matchesAppliances && matchesUstensils;
+    });
+}
+
+export function getFilteredRecipes(searchQuery) {
+    const filters = getSelectedFilters();
+    
+    let recipes;
+    
+    if (searchQuery && searchQuery.length >= 3) {
+        recipes = searchRecipes(searchQuery);
+    } else {
+        recipes = getAllRecipes();
+    }
+    
+    return filterRecipesByTags(recipes, filters);
 }
 
 

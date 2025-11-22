@@ -1,10 +1,80 @@
-import { extractOptionsFromRecipes } from '../utils/search.js';
+//TODO: La recherche input supprime les tags
+
+import { extractOptionsFromRecipes, getFilteredRecipes } from '../utils/search.js';
+import { addFilter, removeFilter, getSearchQuery, setFilteredRecipes, getSelectedFilters, clearAllFilters } from '../utils/state.js';
+import { displayRecipes } from './recipeCard.js';
 
 const dropdownConfig = {
     ingredients: { label: 'Ingrédients', placeholder: 'ingrédient' },
     appliances: { label: 'Appareils', placeholder: 'appareil' },
     ustensils: { label: 'Ustensiles', placeholder: 'ustensile' }
 };
+
+function handleTagSelection(type, value) {
+    addFilter(type, value.toLowerCase());
+    updateDisplay();
+    renderSelectedTags();
+}
+
+function updateDisplay() {
+    const searchQuery = getSearchQuery();
+    const filteredRecipes = getFilteredRecipes(searchQuery);
+    setFilteredRecipes(filteredRecipes);
+    displayRecipes(filteredRecipes);
+    updateAllDropdowns(filteredRecipes);
+    updateRecipeCounter(filteredRecipes.length);
+}
+
+function updateRecipeCounter(count) {
+    const counter = document.querySelector('#recipe-counter');
+    if (counter) {
+        counter.textContent = `${count} recette${count !== 1 ? 's' : ''}`;
+    }
+}
+
+function renderSelectedTags() {
+    const container = document.querySelector('.flex.gap-4.mb-8');
+    const existingTagsContainer = container.querySelector('.selected-tags');
+    
+    if (existingTagsContainer) {
+        existingTagsContainer.remove();
+    }
+
+    const selectedFilters = getSelectedFilters();
+    const hasSelectedTags = Object.values(selectedFilters).some(arr => arr.length > 0);
+    
+    if (!hasSelectedTags) return;
+
+    const tagsContainer = document.createElement('div');
+    tagsContainer.className = 'selected-tags flex flex-wrap gap-2 w-full mb-4';
+    
+    Object.entries(selectedFilters).forEach(([type, tags]) => {
+        tags.forEach(tag => {
+            const tagElement = document.createElement('div');
+            tagElement.className = 'flex items-center gap-2 px-3 py-1 bg-yellow rounded-lg text-sm';
+            
+            const tagText = document.createElement('span');
+            tagText.textContent = tag;
+            tagText.className = 'capitalize';
+            
+            const closeButton = document.createElement('button');
+            closeButton.innerHTML = '×';
+            closeButton.className = 'text-black hover:text-red-600 font-bold text-lg leading-none';
+            
+            closeButton.addEventListener('click', () => {
+                removeFilter(type, tag);
+                updateDisplay();
+                renderSelectedTags();
+            });
+            
+            tagElement.appendChild(tagText);
+            tagElement.appendChild(closeButton);
+            tagsContainer.appendChild(tagElement);
+        });
+    });
+    
+    container.insertBefore(tagsContainer, container.firstChild);
+}
 
 function createDropdownButton(type) {
     const container = document.createElement('div');
@@ -63,6 +133,7 @@ function createDropdownContent(items, type) {
             li.setAttribute('data-value', item);
 
             li.addEventListener('click', () => {
+                handleTagSelection(type, item);
                 dropdown.classList.add('hidden');
             });
 
@@ -106,7 +177,7 @@ export function updateDropdownOptions(type, items) {
         li.setAttribute('data-value', item);
 
         li.addEventListener('click', () => {
-            // TODO: Ajouter la logique de filtrage par tags
+            handleTagSelection(type, item);
             const dropdown = optionsList.closest('[data-dropdown]');
             if (dropdown) {
                 dropdown.classList.add('hidden');
@@ -124,6 +195,11 @@ export function updateAllDropdowns(recipes) {
     updateDropdownOptions('ingredients', options.ingredients);
     updateDropdownOptions('appliances', options.appliances);
     updateDropdownOptions('ustensils', options.ustensils);
+}
+
+export function clearDropdownFilters() {
+    clearAllFilters();
+    renderSelectedTags();
 }
 
 
@@ -157,7 +233,7 @@ export function initializeDropdowns(recipes) {
         console.error('Container des dropdowns non trouvé');
         return;
     }
-
+    // TODO: Auto Discover
     const dropdownTypes = ['ingredients', 'appliances', 'ustensils'];
     const recipeCounter = dropdownsContainer.querySelector('#recipe-counter');
     
