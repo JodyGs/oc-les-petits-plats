@@ -23,7 +23,7 @@ export function createRecipeCard(recipe) {
     article.innerHTML = `
         <div class="relative">
             <img src="./assets/recipes/new/${recipe.image}" alt="${recipe.name}" class="object-cover w-full h-64">
-            <div class="absolute top-4 right-4 bg-yellow text-black px-3 py-1 rounded-full text-sm font-bold">
+            <div class="absolute top-4 right-4 bg-yellow text-black px-3 py-1 rounded-full text-sm font-thin">
                 ${recipe.time}min
             </div>
         </div>
