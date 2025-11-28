@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Manrope:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 
 @theme {
-  --font-anton: "Anton", sans-serif; 
+  --font-anton: "Anton", sans-serif;
+  --font-manrope: "Manrope", sans-serif; 
 
   --color-*: initial;
   --color-black: #000;

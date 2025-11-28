@@ -25,7 +25,8 @@ export const recipes = [
                 "unit" : "grammes"
             },
             {
-                "ingredient": "Glaçons"
+                "ingredient": "Glaçons",
+                "quantity" : 2,
             }
         ],
         "time": 10,

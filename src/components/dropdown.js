@@ -33,8 +33,8 @@ function updateRecipeCounter(count) {
 }
 
 function renderSelectedTags() {
-    const container = document.querySelector('.flex.gap-4.mb-8');
-    const existingTagsContainer = container.querySelector('.selected-tags');
+    const mainContainer = document.querySelector('.flex.gap-4.mb-8').parentElement;
+    const existingTagsContainer = mainContainer.querySelector('.selected-tags');
     
     if (existingTagsContainer) {
         existingTagsContainer.remove();
@@ -46,12 +46,12 @@ function renderSelectedTags() {
     if (!hasSelectedTags) return;
 
     const tagsContainer = document.createElement('div');
-    tagsContainer.className = 'selected-tags flex flex-wrap gap-2 w-full mb-4';
+    tagsContainer.className = 'selected-tags flex flex-wrap gap-2 mb-4';
     
     Object.entries(selectedFilters).forEach(([type, tags]) => {
         tags.forEach(tag => {
             const tagElement = document.createElement('div');
-            tagElement.className = 'flex items-center gap-2 px-3 py-1 bg-yellow rounded-lg text-sm';
+            tagElement.className = 'flex items-center gap-2 px-4 py-3 bg-yellow rounded-lg text-sm';
             
             const tagText = document.createElement('span');
             tagText.textContent = tag;
@@ -73,7 +73,9 @@ function renderSelectedTags() {
         });
     });
     
-    container.insertBefore(tagsContainer, container.firstChild);
+    const dropdownsContainer = mainContainer.querySelector('.flex.gap-4.mb-8');
+    const recipesContainer = mainContainer.querySelector('#recipes-container');
+    mainContainer.insertBefore(tagsContainer, recipesContainer);
 }
 
 function createDropdownButton(type) {

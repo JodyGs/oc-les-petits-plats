@@ -6,7 +6,7 @@ export function createRecipeCard(recipe) {
     const ingredientsHTML = recipe.ingredients.map(item => {
         const quantity = item.quantity || '';
         const unit = item.unit || '';
-        const quantityDisplay = quantity ? `<span class="text-gray-600">${quantity}${unit}</span>` : '';
+        const quantityDisplay = quantity ? `<span class="text-lightgrey font-manrope">${quantity}${unit}</span>` : '';
 
         return `
             <div>
@@ -27,17 +27,17 @@ export function createRecipeCard(recipe) {
                 ${recipe.time}min
             </div>
         </div>
-        <div class="p-6">
+        <div class="p-9">
             <h2 class="mb-4 text-xl font-bold text-gray-900">${recipe.name}</h2>
-            <div class="mb-4">
-                <h3 class="mb-2 text-xs font-bold tracking-wider text-gray-500 uppercase">Recette</h3>
-                <p class="text-sm text-gray-700 leading-relaxed">
+            <div class="mb-10">
+                <h3 class="mb-4 text-xs font-medium tracking-wider text-lightgrey uppercase">Recette</h3>
+                <p class="text-sm text-gray-700 leading-relaxed font-manrope">
                     ${description}
                 </p>
             </div>
             <div>
-                <h3 class="mb-3 text-xs font-bold tracking-wider text-gray-500 uppercase">Ingrédients</h3>
-                <div class="grid grid-cols-2 gap-2 text-sm">
+                <h3 class="mb-4 text-xs font-medium tracking-wider text-lightgrey uppercase">Ingrédients</h3>
+                <div class="grid grid-cols-2 gap-4 text-sm">
                     ${ingredientsHTML}
                 </div>
             </div>
