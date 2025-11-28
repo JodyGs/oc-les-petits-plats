@@ -1,7 +1,7 @@
 
 export function createRecipeCard(recipe) {
     const article = document.createElement('article');
-    article.className = 'overflow-hidden bg-white rounded-lg shadow-md';
+    article.className = 'overflow-hidden bg-white rounded-lg shadow-md max-w-[402px]';
 
     const ingredientsHTML = recipe.ingredients.map(item => {
         const quantity = item.quantity || '';
@@ -27,7 +27,7 @@ export function createRecipeCard(recipe) {
                 ${recipe.time}min
             </div>
         </div>
-        <div class="p-9">
+        <div class="p-9 pb-16">
             <h2 class="mb-4 text-xl font-bold text-gray-900">${recipe.name}</h2>
             <div class="mb-10">
                 <h3 class="mb-4 text-xs font-medium tracking-wider text-lightgrey uppercase">Recette</h3>
