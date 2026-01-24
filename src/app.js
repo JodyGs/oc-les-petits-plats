@@ -37,8 +37,17 @@ function initializeMainSearch() {
         return;
     }
 
+    const minCharsMessage = document.querySelector('#search-min-chars');
+
     searchInput.addEventListener('input', (e) => {
-        const query = e.target.value;
+        const query = e.target.value.trim();
+
+        if (query.length > 0 && query.length < 3) {
+            minCharsMessage.classList.remove('hidden');
+        } else {
+            minCharsMessage.classList.add('hidden');
+        }
+
         handleMainSearch(query);
     });
 }

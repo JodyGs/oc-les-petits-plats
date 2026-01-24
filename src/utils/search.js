@@ -8,8 +8,6 @@ export function searchRecipes(query) {
         return getAllRecipes();
     }
 
-//TODO: Utiliser un foreach sur autre branche 
-// jsbench. tester avec nombres important de recettes
     return getAllRecipes().filter(recipe => {
         if (recipe.name.toLowerCase().includes(searchTerm)) {
             return true;

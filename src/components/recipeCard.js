@@ -57,6 +57,16 @@ export function displayRecipes(recipes) {
 
     recipesContainer.innerHTML = '';
 
+    if (recipes.length === 0) {
+        recipesContainer.innerHTML = `
+            <p class="col-span-3 text-center text-lg text-gray-500 mt-12">
+                Aucune recette ne correspond à votre recherche
+            </p>
+        `;
+        updateRecipeCounter(0);
+        return;
+    }
+
     recipes.forEach(recipe => {
         const card = createRecipeCard(recipe);
         recipesContainer.appendChild(card);
